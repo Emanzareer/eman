@@ -1,0 +1,52 @@
+{% extends 'register/main.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% block content %}
+      <div class="py-5 d-flex flex-column justify-content-center align-item-center" style=" 
+    height: 100vh;
+    background-image: url({% static 'image/ppu.jpg' %});
+    filter: brightness(80%);
+    background-repeat: no-repeat;
+    background-size: cover;">
+        <h2 class=" bg-primary px-2" style="width: fit-content;" >My Schedule</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Description</th>
+              <th>Instructor</th>
+              <th>Room No</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Days</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for reg in courses %}
+              <tr>
+                <td>{{ reg.name }}</td>
+                <td>{{ reg.description }}</td>
+                <td>{{ reg.instructor }}</td>
+                <td>{{ reg.roomNo }}</td>
+                <td>{{ reg.startTime }}</td>
+                <td>{{ reg.endTime }}</td>
+                <td>{{ reg.days }}</td>
+              </tr>
+            {% empty %}
+              <tr>       
+                <td colspan="7">No registered courses found.</td>  {% comment %}     //دمج 7 column {% endcomment %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endblock %}
+  </body>
+</html>
